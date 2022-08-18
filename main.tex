@@ -1,0 +1,278 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\usepackage{cite}
+\usepackage{tipa}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{authblk}
+\usepackage{fourier}
+\fontfamily{lmss}
+\usepackage{geometry}
+\geometry{
+  body={6.5in, 8.5in},
+  left=1.0in,
+  top=1.25in
+}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue}
+
+\begin{document}
+
+\title{EMA Research Manual}
+\author[1]{Christianm DiCanio}
+\author[2]{Miao Zhang}
+\affil[1, 2]{Department of Linguistics, University at Buffalo}
+\date{Last updated in August 2022}
+
+\maketitle
+
+\tableofcontents
+
+\section{Experiment procedure}
+\subsection{Sensor calibration}
+	Use \colorbox{lightgray}{\texttt{cs5diag}} and \colorbox{lightgray}{\texttt{cs5cal}} on the EMA laptop.
+	
+	\begin{enumerate}
+	    \item To insert circer, align notches on top, screw in from the bottom. Make sure it is not too tight.
+	    
+	    \item Make sure sensors are clean of latex. Place them in the grey trays aligned so that the lower margin of the sensor (the flat part) is against the slot. Tighten the screw to maintain them in place - not too tight again.
+	    
+	    \item Affix sensors 1-4 and 5-8 in the trays and place them into the circer. Just push the trays downward to fix them in.
+	    
+	    \item To start calibration, first run \colorbox{lightgray}{\texttt{cs5diag}} (diagnostic program). In the diagnostic program, select Run, then look at real-time values. From here, green indicates that the sensor is working. Red indicates that it is not.
+	    
+	    \item If you look at long-term values, you get the observed deviations for the sensors over time. A value from -4 to +4 is fine. If you get deviations over 20 or 30, you have a problem with the sensor (it would show up as red).
+	    
+	    \item Now that you know all sensors are working, you can calibrate. Open Sensor calibration, \colorbox{lightgray}{\texttt{cs5cal}}. Give a name to the calibration session, select the trays in the circer, and then click okay. Calibration will start.
+	    
+	    \item DON'T DISTURB THE COMPUTER DURING CALIBRATION.
+	    
+	    \item Have two sets of sensors calibrated! It would help if you had this for the bite plane and the palatal trace sensor.
+	    
+	\end{enumerate}
+
+\subsection{Sensor gluing}
+\subsubsection{Pre-check}
+    \begin{enumerate}
+        \item Tape.
+        \item Cotton.
+        \item Tongue depressors (2-3).
+		\item Water with straw.
+		\item Tweezers.
+		\item Hair dryer.
+		\item Disinfected sensors covered with latex.
+    \end{enumerate}
+    
+    \subsubsection{Roles}
+    	At least two people are needed to do the sensor gluing.
+    	
+    	\bigskip
+    	
+    	\begin{enumerate}
+    	\item Gluer(s):
+	        \begin{itemize}
+	            \item Use the tongue depressor to attach sensors to the subject.
+	            \item Use pipettes to more glues to sensors not staying.
+	            \item Use a hair dryer to help dry the glue.
+	        \end{itemize}
+
+        \bigskip
+        
+        \item Assistant(s):
+            \begin{itemize}
+                \item Give sensors. 
+                \item Give hair dryer.
+                \item Help hold the sensor when the gluer is gluing. 
+                \item Give pipettes.
+                \item Tape the sensor coil to the subject's left shoulder.
+            \end{itemize}
+        \end{enumerate}
+
+    \subsubsection{Attaching sensors}
+    \begin{enumerate}
+        \item 	Have a list with each sensor channel and the intended articulator you will attach it to.
+        
+        \item Make the order in which you will attach each articulator explicit (I use alphabetic order to avoid getting confused with the channel numbers)
+        
+        \item Dry the articulator surfaces before starting gluing. You can ask the subject to do some of this themselves.
+        
+        \begin{itemize}
+            \item For the lips and upper/lower incisor, you must do the drying. Ask the subject to gently hold their lips away from their teeth using barbering paper.
+            \item For the tongue, you can ask the subject to hold their tongue tip with barbering paper with one hand while simultaneously drying their tongue (with their mouths open) with the other hand. You can do some more drying with dental cotton if needed.
+        \end{itemize}
+        
+        \item The dental glue dries out quickly, so you should only put a small amount on the tray before gluing. Have your assistant put more in when needed. Use the pipettes if you need to place a small amount of glue on the articulator.
+        
+        \item Each sensor is dipped in dental glue just before gluing it. Carefully touch the sensor to the dried surface of the articulator. Use wooden tongue depressors to hold down the sensor lightly. Don’t press too hard (let the glue do the work).
+        
+        \item For the sensors attached above the upper, and below the lower incisors, you may have to use the hair dryer. You will have to use it for the tongue sensors. DO NOT PUT IT ON HIGH OR HOT! Point it toward the articulator, but not from too close. The subject should continue to hold their articulator while using the hair dryer.
+        
+        \item Use your hand to cover the hair dryer a little bit to prevent the wind from going into the subject's nose. It's very uncomfortable.
+        
+        \item After all sensors are glued, facial and oral sensor wires should be taped (with a bit of slack) to the subject’s cheek, all on the left side.
+        
+        \item This allows for some give with jaw opening.
+        
+        \begin{itemize}
+            \item If a wire gets pulled, it pulls the tape on the face, not the sensor, out of the mouth!
+            \item Organizes the wires.
+        \end{itemize}
+
+Once the sensors are attached, give the subject a drink of water with a straw. They will want this.
+    \end{enumerate}
+
+    \subsubsection{Head correction}
+    \colorbox{lightgray}{\texttt{cs5normpos}} generates a reference object from a set of samples of a sweep file containing the static configuration that serves as a target during the head correction.
+    
+    \bigskip
+    
+        Head correction
+        \begin{itemize}
+            \item determines a set of rotation and translation parameters per data frame. This is organized as a 4x4 matrix of homogeneous coordinates.
+            \item this matrix is applied to all sensors of a given data set, resulting in head-corrected data.
+        \end{itemize}
+    
+    Steps:
+    \begin{enumerate}
+        \item Choose a session folder. This is just the session directory, not the \emph{amps} or \emph{rawpos} subdirectories, e.g. click ``\colorbox{lightgray}{\texttt{current}}.''
+        \item Reference object file. Unclick the default (if you wish). Select the sweep file, which will reflect the reference file. Make sure this exists in the \emph{rawpos} folder.
+        \item You can select which samples are used from these sweeps to generate the reference object file.
+        \item Under “Head correction sensors”, select just those sensors which are at stable positions on the head, e.g., upper incisors, nasion, behind left and right ears.
+        \item Click “Use 4x4 pretransformation matrix” and click “Create” (if you do not already have one for this session/speaker). This will open the program \colorbox{lightgray}{\texttt{cs5rotate}}.
+        
+        \begin{itemize}
+            \item The reference object file should already be loaded and all active channels imported. Otherwise, click “Data selection (pos-file)” to specify the reference object. 
+            \item Select channels that you need for rotation. This should be all sensors that you are using. (So, unlike the head correction, it’s not just a few channels.)
+            \item Select bite plane preset sensors under “Rotation presets.”
+            \item Save the pre-transformation matrix.
+            \item Close the \textbf{cs5rotate}.
+        \end{itemize}
+        
+        \item Click “Calculate Positions” in \colorbox{lightgray}{\texttt{cs5normpos}}.
+    \end{enumerate}
+
+\subsection{Recording}
+    \subsubsection{Preliminaries for running a subject}
+    \begin{enumerate}
+        \item They’re aware of the procedure.
+	    \item They’re aware of their rights.
+	    \item They can brush their teeth if they wish.
+	    \item They have washed their hands.
+	    \item They are comfortably seated.
+	    \item They aren’t sitting too far away from EMA (you have to move them).
+	\end{enumerate}
+		
+	\subsubsection{Check list}
+	\begin{enumerate}
+	    \item What calibration set are you using?
+	    \item What sensors are you using? 
+	    \item System should be on for 10-15 minutes before beginning. But if you have to reset, you don't have to wait for it to warm up.
+	\end{enumerate}
+	
+	\subsubsection{Prior to recording}
+	\begin{enumerate}
+	    \item Have two sets of sensors calibrated so that if one breaks, you can replace it and change the calibration for that sensor.
+	    \item The reference sensors have to stay put, so the bite-plane has to contain different sensors, e.g., if you use sensors 1-2 for reference, then the bite-plane with a second set of sensors has to be three of sensors \#3-8, e.g., \#6-8. Save \#5 for the palatal trace sensor.
+	    \item If the reference sensors break, you must start the experiment.
+	\end{enumerate}
+
+    \subsubsection{Head correction and running sweeps}
+    Use \textbf{cs5recorder}.
+    \begin{enumerate}
+        \item Is everything on? AG501? Mic? Bluetooth Speaker? Bluetooth keyboard? Laptop battery?
+        \item A speaker gives you better quality and bigger volume of your stimuli than the internal speaker on your laptop.
+        \item If you have a Bluetooth keyboard, you can present the stimuli on your laptop and simultaneously record the sweeps on the EMA laptop. But you can also ask one of your assistants to help you do the stimuli presentation.
+        \item Start recorder, select reference sensors with calibration set and bite-plane with (different) calibration set. Run sweep, 3-4 seconds. Stop sweep.
+        \begin{itemize}
+            \item Be sure that your orientation here is from the speaker's perspective, e.g., left of the speaker, right of the speaker. Don't get your channels confused.
+            \item You have to run everything in one fell swoop - different sensors for bite plane from reference sensors.
+        \end{itemize}
+        \item Initial head-correction, use the default, then click "Create."
+        \begin{itemize}
+            \item You want a 4x4 matrix for rotation and shifting. Create matrix. So, the center bite-plane sensor should be at 2 cm in front of the 0 point.
+        \end{itemize}
+        \item Click save.
+        \item Select reference sensors and then click "Calculate Position."
+        \item To do palatal trace, select sensor and reference sensors, and then run a sweep. Process sweep. Be sure to check the calibration set here.
+        \item Are you ready to record? Select all the sensors.
+        \item Start \& stop sweeps - all are saved. The only reason to use "Process Sweep" in a recording session is to examine some results.
+        \item Recommendation: open a separate viewer window to look at the results (you can load the real-time data in a separate window and record sweeps in this window).
+    \end{enumerate}
+
+\subsection{Evaluate your data}
+    \begin{enumerate}
+        \item In \colorbox{lightgray}{\texttt{cs5view}}, load \emph{pos} data, then select \emph{rawpos} for that calibration sweep. This will show you the calibration output and see if certain sensors are off.
+        \item Within \colorbox{lightgray}{\texttt{cs5view}}, you can look at the output of the data. Select \emph{pos} data here, as it includes the head correction.
+        \item The "Overlays" option also visualizes in the real-time data; you can see if certain sensors are outside the measurement area here.
+        \item To include the palatal trace reference, load \emph{pos} data for the reference sweep and then click on the bar at the top of the menu with the left mouse button. This will keep the trace on the viewer while you look at other sweep data.
+    \end{enumerate}
+    
+\section{Post-processing}
+\subsection{Step 1.}
+    (Steps: \emph{*.amp} -$>$ \emph{*.rawpos} -$>$ \emph{*.pos})
+    \vspace{12pt}
+	
+	Use \colorbox{lightgray}{\texttt{calcpos}} \& \colorbox{lightgray}{\texttt{cs5normpos}} to process the data before further analysis in MATLAB.
+	\begin{enumerate}
+	    \item In \colorbox{lightgray}{\texttt{calcpos}}, find folder of your experiment session. Find the folder \emph{amps}, open it.
+	    \item Calculate the files. This will give you the \emph{rawpos} data.
+	    \item Then go to \colorbox{lightgray}{\texttt{cs5normpos}}, select current folder.
+	    \item Calculate rotation and shifting. Save, do head-correction. Save.
+	    \item Now, go and convert output binary \emph{pos} data to \emph{ascii}.
+        \item If the sensors went outside the recording area, then the default is for \colorbox{lightgray}{\texttt{calcpos}} to use the noise in the signal to calculate its position. This will take a long time, and you don't want that. So, make sure you check for three things:
+	        \begin{itemize}
+	            \item Sensors that you are not using should be deselected during recording sweeps. This sets their amplitudes to 0 and is not processed when determining raw positions.
+	            \item If you are recording a subject and they move their articulators outside of the recording area, mark it in a notebook. You can delete the amp file for that sweep, and the recorder "should" pick up with the next number (but don't do this during the session). 
+	            \item If you didn't realize that the speaker went outside the recording area and you find that \colorbox{lightgray}{\texttt{calcpos}} is taking a while to process a sweep, then cancel the process, remove the file from the current directory and start it over.
+	        \end{itemize}
+	\end{enumerate}
+    
+\subsection{Step II.}
+Step: \emph{*.pos} -$>$ \emph{*.mat}
+\vspace{12pt}
+
+Before processing in MATLAB, take out all breaks and filler trials. You should have a log file output from your stimuli presenting software that tells you which ones are fillers. You need to mark the fillers before recording the sweeps). Then you can use \textbf{sensors.m} to process the data.
+
+\bigskip
+	
+	Before running sensors.m to post-process, 
+	\begin{enumerate}
+	    \item create a separate \textbf{sensors.txt} file to specify the sensor numbers. Put \textbf{sensors.txt} in the same directory as \textbf{sensors.m}.
+	    \item Change the index of UI (upper-incisor) to what was used in your experiment.
+	\end{enumerate}
+
+	\bigskip 	
+	
+	\emph{sandbox} directory must be included in the MATLAB path. DO NOT modify the original files here, but make copies as needed.
+	
+	\bigskip
+	
+	The data directory must be included in the path of MATLAB. The data directory should contain:
+	\begin{enumerate}
+	    \item A folder named ``BP" containing the .pos file for the bite-plane.
+	    \item A folder named ``EMA" which in turn contains:
+	    \begin{itemize}
+	        \item A folder named ``rawpos" with all the \emph{*.pos} data.
+	        \item A folder named ``wave" with all the \emph{*.wav} files.
+	    \end{itemize}
+	    \item A folder named ``procs" that has \textbf{Adjust.m}.
+	    \item A copy of \textbf{sensors.m} specifies the directory of your current data.
+	\end{enumerate}
+	
+	\bigskip
+	
+	What does \textbf{sensors.m} do?
+	\begin{enumerate}
+	    \item Identify the sensors.
+	    \item Process sensors and bite-plane.
+	    \item Orientation and subtraction of origin (centers the data)
+	    \item Test against a trial (any trial).
+	    \item Process trials (converting \emph{*.pos} files into \emph{*.mat} files)
+	\end{enumerate}
+
+\end{document}
